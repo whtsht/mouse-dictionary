@@ -80,6 +80,17 @@ const onPdfDocument = (url, pdfUrlPattern) => {
 const processSecondOrLaterLaunch = async (existingElement) => {
   const userSettings = await config.loadSettings();
   toggleDialog(existingElement, userSettings);
+
+  const top = dom.pxToFloat(existingElement.style["top"]);
+  const left = dom.pxToFloat(existingElement.style["left"]);
+
+  if (!utils.screenContains({ top, left })) {
+    const width = dom.pxToFloat(existingElement.style["width"]);
+    const height = dom.pxToFloat(existingElement.style["height"]);
+    const newPosition = utils.optimizeInitialPosition({ top, left, width, height });
+    const positionStyles = utils.convertToStyles(newPosition);
+    dom.applyStyles(existingElement, positionStyles);
+  }
 };
 
 const isFramePage = () => {

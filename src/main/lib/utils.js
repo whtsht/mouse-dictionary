@@ -91,6 +91,12 @@ const optimizeInitialPosition = (position, minWindowSize = 50, edgeSpace = 5) =>
   };
 };
 
+const screenContains = (position) => {
+  const windowWidth = window.innerWidth;
+  const windowHeight = window.innerHeight;
+  return !(position.top >= windowHeight || position.left >= windowWidth);
+};
+
 const clamp = (value, minValue, maxValue) => {
   let r = value;
   r = min(r, maxValue);
@@ -128,5 +134,6 @@ export default {
   convertToInt,
   convertToStyles,
   optimizeInitialPosition,
+  screenContains,
   getSelection,
 };
