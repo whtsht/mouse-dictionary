@@ -22,6 +22,7 @@ const createDialogElement = (settings) => {
   });
   const dialog = dom.create(html);
   dom.applyStyles(dialog, settings.normalDialogStyles);
+
   return dialog;
 };
 
@@ -29,6 +30,13 @@ const create = (settings) => {
   const dialog = createDialogElement(settings);
   const content = dom.create(settings.contentWrapperTemplate);
   dialog.appendChild(content);
+  document.addEventListener("mousemove", (ev) => {
+    const x = ev.clientX;
+    const y = ev.clientY;
+
+    dialog.style.left = `${x + 10}px`;
+    dialog.style.top = `${y + 10}px`;
+  });
   return { dialog, content };
 };
 
