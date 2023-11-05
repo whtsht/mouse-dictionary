@@ -73,6 +73,5 @@ coverage/
 static/gen/
 static/gen-*/
 static/overwrite/
-static/pdf/
 
 keys.json
